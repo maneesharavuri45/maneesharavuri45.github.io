@@ -191,13 +191,13 @@ footer {
 
 .collection-card img {
   width: 100%;
-  height: 320px;
+  height: 260px !important;
   object-fit: cover;
   display: block;
 }
 
 @media (max-width: 700px) {
   .collection-card img {
-    height: 260px;
+    height: 220px !important;
   }
 }
