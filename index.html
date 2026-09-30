@@ -14,7 +14,7 @@
     <img src="logo.jpeg" alt="Ravuri's Designer Studio logo">
   </a>
 
-  <button class="menu-toggle" aria-label="Open menu">☰</button>
+  <button class="menu-toggle" type="button" aria-label="Open menu">☰</button>
 
   <nav class="nav">
     <a href="#home">Home</a>
@@ -28,7 +28,6 @@
 
 <main id="home">
 
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-copy">
       <p class="eyebrow">RAVURI'S DESIGNER STUDIO</p>
@@ -51,7 +50,6 @@
     </div>
   </section>
 
-  <!-- INTRO -->
   <section class="intro">
     <p class="eyebrow">THE RAVURI'S SIGNATURE</p>
     <h2>Wear something that feels<br><em>uniquely yours.</em></h2>
@@ -61,7 +59,6 @@
     </p>
   </section>
 
-  <!-- COLLECTIONS -->
   <section class="section" id="collections">
     <div class="section-heading">
       <div>
@@ -73,29 +70,25 @@
 
     <div class="collection-grid">
 
-      <!-- LEHENGAS -->
-      <button class="collection-card collection-card-button" id="lehengaCollection" type="button">
+      <a class="collection-card" href="#lehengaModal">
         <img class="collection-image" src="images/peach-saree.jpeg" alt="Designer lehenga by Ravuri's Designer Studio">
         <h3>Lehengas</h3>
         <p>Festive, elegant and made around your vision.</p>
         <span class="collection-link">View collection →</span>
-      </button>
+      </a>
 
-      <!-- DRESSES -->
       <article class="collection-card">
         <img class="collection-image" src="images/kids-pink.jpeg" alt="Handcrafted children's designer wear by Ravuri's Designer Studio">
         <h3>Dresses &amp; Frocks</h3>
         <p>From little girls' outfits to statement occasion wear.</p>
       </article>
 
-      <!-- HAND PAINTED -->
       <article class="collection-card">
         <img class="collection-image" src="images/kids-handpainted.jpeg" alt="Hand-painted designer wear by Ravuri's Designer Studio">
         <h3>Hand-Painted Wear</h3>
         <p>Art brought to life on fabric.</p>
       </article>
 
-      <!-- MAGGAM -->
       <article class="collection-card">
         <img class="collection-image" src="images/purple-pink.jpeg" alt="Maggam and embellished designer wear by Ravuri's Designer Studio">
         <h3>Maggam &amp; Embellishment</h3>
@@ -105,16 +98,18 @@
     </div>
   </section>
 
-  <!-- LEHENGA POPUP -->
-  <div class="collection-modal" id="lehengaModal" aria-hidden="true">
-    <div class="collection-modal-overlay" id="modalOverlay"></div>
+  <!-- LEHENGA COLLECTION POPUP -->
+  <div class="collection-modal" id="lehengaModal">
 
-    <div class="collection-modal-content" role="dialog" aria-modal="true" aria-labelledby="lehengaModalTitle">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Close collection">×</button>
+    <div class="collection-modal-overlay"></div>
+
+    <div class="collection-modal-content">
+
+      <a class="modal-close" href="#collections" aria-label="Close collection">×</a>
 
       <div class="modal-header">
         <p class="eyebrow">RAVURI'S COLLECTION</p>
-        <h2 id="lehengaModalTitle">Lehengas</h2>
+        <h2>Lehengas</h2>
         <p>Explore our handcrafted lehenga designs.</p>
       </div>
 
@@ -153,10 +148,10 @@
         </div>
 
       </div>
+
     </div>
   </div>
 
-  <!-- CUSTOM BANNER -->
   <section class="custom-banner" id="custom">
     <div>
       <p class="eyebrow">YOUR IDEA. OUR CRAFT.</p>
@@ -169,7 +164,6 @@
     </a>
   </section>
 
-  <!-- PORTFOLIO -->
   <section class="section" id="portfolio">
     <div class="section-heading">
       <div>
@@ -184,7 +178,6 @@
     </div>
   </section>
 
-  <!-- ABOUT -->
   <section class="about" id="about">
     <div>
       <p class="eyebrow">ABOUT THE STUDIO</p>
@@ -203,7 +196,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="contact" id="contact">
     <p class="eyebrow">LET'S CREATE</p>
     <h2>Ready to make<br><em>something yours?</em></h2>
@@ -221,6 +213,6 @@
   <span>Custom Designer Wear</span>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=4"></script>
 </body>
 </html>
