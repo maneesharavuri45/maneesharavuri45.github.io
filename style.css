@@ -1,226 +1,782 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ravuri's Designer Studio</title>
-  <meta name="description" content="Ravuri's Designer Studio — Custom designer wear, hand-painted and Maggam creations for women and kids.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+:root {
+  --cream: #f8f5ef;
+  --paper: #fffdf9;
+  --ink: #171513;
+  --burgundy: #63313b;
+  --muted: #77716b;
+  --line: #ded8ce;
+  --gold: #b79b68;
+}
 
-<header class="site-header">
-  <a class="brand" href="#home">
-    <img src="logo.jpeg" alt="Ravuri's Designer Studio logo">
-  </a>
+* {
+  box-sizing: border-box;
+}
 
-  <button class="menu-toggle" aria-label="Open menu">☰</button>
+html {
+  scroll-behavior: smooth;
+}
 
-  <nav class="nav">
-    <a href="#home">Home</a>
-    <a href="#collections">Collections</a>
-    <a href="#custom">Custom Orders</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
 
-<main id="home">
+body.modal-open {
+  overflow: hidden;
+}
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-copy">
-      <p class="eyebrow">RAVURI'S DESIGNER STUDIO</p>
-      <h1>Custom designer wear,<br><em>made just for you.</em></h1>
-      <p class="hero-text">
-        Hand-painted details, Maggam artistry and thoughtfully designed outfits
-        for women and kids — made to order, with your story at the heart of it.
-      </p>
+img {
+  max-width: 100%;
+}
 
-      <div class="hero-actions">
-        <a class="button button-dark" href="#collections">Explore the collection</a>
-        <a class="button button-outline" href="https://wa.me/917702096099" target="_blank" rel="noopener">Start a custom order</a>
-      </div>
-    </div>
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    <div class="hero-visual">
-      <div class="hero-frame">
-        <img src="images/blue-dress.jpeg" alt="Handcrafted designer dress by Ravuri's Designer Studio">
-      </div>
-    </div>
-  </section>
+button {
+  font-family: inherit;
+}
 
-  <!-- INTRO -->
-  <section class="intro">
-    <p class="eyebrow">THE RAVURI'S SIGNATURE</p>
-    <h2>Wear something that feels<br><em>uniquely yours.</em></h2>
-    <p>
-      From statement lehengas and dresses to hand-painted pieces and intricate
-      embellishments, every creation is designed around the person wearing it.
-    </p>
-  </section>
 
-  <!-- COLLECTIONS -->
-  <section class="section" id="collections">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">EXPLORE</p>
-        <h2>Collections</h2>
-      </div>
-      <p>Made-to-order pieces, custom creations and artistic details.</p>
-    </div>
+/* HEADER */
 
-    <div class="collection-grid">
+.site-header {
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 4vw;
+  background: rgba(248, 245, 239, 0.97);
+  border-bottom: 1px solid var(--line);
+}
 
-      <!-- LEHENGAS -->
-      <button class="collection-card collection-card-button" id="lehengaCollection" type="button">
-        <img class="collection-image" src="images/peach-saree.jpeg" alt="Designer lehenga by Ravuri's Designer Studio">
-        <h3>Lehengas</h3>
-        <p>Festive, elegant and made around your vision.</p>
-        <span class="collection-link">View collection →</span>
-      </button>
+.brand {
+  display: block;
+  width: 150px;
+}
 
-      <!-- DRESSES -->
-      <article class="collection-card">
-        <img class="collection-image" src="images/kids-pink.jpeg" alt="Handcrafted children's designer wear by Ravuri's Designer Studio">
-        <h3>Dresses &amp; Frocks</h3>
-        <p>From little girls' outfits to statement occasion wear.</p>
-      </article>
+.brand img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
-      <!-- HAND PAINTED -->
-      <article class="collection-card">
-        <img class="collection-image" src="images/kids-handpainted.jpeg" alt="Hand-painted designer wear by Ravuri's Designer Studio">
-        <h3>Hand-Painted Wear</h3>
-        <p>Art brought to life on fabric.</p>
-      </article>
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
 
-      <!-- MAGGAM -->
-      <article class="collection-card">
-        <img class="collection-image" src="images/purple-pink.jpeg" alt="Maggam and embellished designer wear by Ravuri's Designer Studio">
-        <h3>Maggam &amp; Embellishment</h3>
-        <p>Detailed work for pieces that deserve attention.</p>
-      </article>
+.nav a {
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
 
-    </div>
-  </section>
+.nav a:hover {
+  color: var(--burgundy);
+}
 
-  <!-- LEHENGA POPUP -->
-  <div class="collection-modal" id="lehengaModal" aria-hidden="true">
-    <div class="collection-modal-overlay" id="modalOverlay"></div>
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  font-size: 25px;
+  cursor: pointer;
+}
 
-    <div class="collection-modal-content" role="dialog" aria-modal="true" aria-labelledby="lehengaModalTitle">
-      <button class="modal-close" id="modalClose" type="button" aria-label="Close collection">×</button>
 
-      <div class="modal-header">
-        <p class="eyebrow">RAVURI'S COLLECTION</p>
-        <h2 id="lehengaModalTitle">Lehengas</h2>
-        <p>Explore our handcrafted lehenga designs.</p>
-      </div>
+/* TYPOGRAPHY */
 
-      <div class="lehenga-popup-grid">
+.eyebrow {
+  margin: 0 0 16px;
+  color: var(--burgundy);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
 
-        <div class="popup-image">
-          <img src="images/CBE3B153-AEE8-422F-9227-226ACC4FA1B4.png" alt="Peach embellished designer lehenga">
-        </div>
+h1,
+h2,
+h3 {
+  margin-top: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  line-height: 1.05;
+}
 
-        <div class="popup-image">
-          <img src="images/722CB00E-36C3-4ECC-ACCE-8B5B27797BFB.png" alt="Aqua floral designer lehenga">
-        </div>
+h1 {
+  font-size: clamp(48px, 6vw, 88px);
+}
 
-        <div class="popup-image">
-          <img src="images/37611B67-BC3A-4B59-881C-A0171E419D04.png" alt="Magenta and ivory designer lehenga">
-        </div>
+h2 {
+  font-size: clamp(42px, 5vw, 70px);
+}
 
-        <div class="popup-image">
-          <img src="images/2F0FE901-D72A-414A-B264-08428F8AB876.png" alt="Black and gold designer lehenga">
-        </div>
+h3 {
+  font-size: 29px;
+}
 
-        <div class="popup-image">
-          <img src="images/86E15E4D-719B-4EA9-8967-07C583CE706D.png" alt="Peach and maroon designer lehenga">
-        </div>
+em {
+  color: var(--burgundy);
+  font-style: italic;
+}
 
-        <div class="popup-image">
-          <img src="images/04EA39D0-4D21-404D-8A60-DFC8EAE75DC8.png" alt="Yellow and purple designer lehenga">
-        </div>
 
-        <div class="popup-image">
-          <img src="images/2AE68D38-542E-43E1-A179-5B0C4464022F.png" alt="Red and gold designer lehenga">
-        </div>
+/* HERO */
 
-        <div class="popup-image">
-          <img src="images/8EB5EBBF-296D-40E4-BBC1-5DF9017C0CA4.png" alt="Purple and pink designer lehenga">
-        </div>
+.hero {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  min-height: 720px;
+  padding: 70px 4vw;
+  gap: 60px;
+}
 
-      </div>
-    </div>
-  </div>
+.hero-copy {
+  max-width: 620px;
+}
 
-  <!-- CUSTOM BANNER -->
-  <section class="custom-banner" id="custom">
-    <div>
-      <p class="eyebrow">YOUR IDEA. OUR CRAFT.</p>
-      <h2>Have something<br><em>in mind?</em></h2>
-      <p>Tell us what you imagine. We'll turn the idea into a custom piece.</p>
-    </div>
+.hero-copy h1 {
+  margin-bottom: 30px;
+}
 
-    <a class="button button-light" href="https://wa.me/917702096099" target="_blank" rel="noopener">
-      WhatsApp to customise
-    </a>
-  </section>
+.hero-text {
+  max-width: 540px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
 
-  <!-- PORTFOLIO -->
-  <section class="section" id="portfolio">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">OUR WORK</p>
-        <h2>Portfolio</h2>
-      </div>
-      <p>A visual story of pieces created at Ravuri's.</p>
-    </div>
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 35px;
+}
 
-    <div class="portfolio-note">
-      <p><strong>More creations coming soon.</strong> Explore our collections to see recent work.</p>
-    </div>
-  </section>
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
 
-  <!-- ABOUT -->
-  <section class="about" id="about">
-    <div>
-      <p class="eyebrow">ABOUT THE STUDIO</p>
-      <h2>Designed with intention.<br><em>Created by hand.</em></h2>
-    </div>
+.hero-frame {
+  width: 100%;
+  max-width: 650px;
+  overflow: hidden;
+  background: #eee7dc;
+}
 
-    <div>
-      <p>
-        Ravuri's Designer Studio creates custom designer wear with a focus on
-        individuality, craftsmanship and artistic detail.
-      </p>
-      <p>
-        Women, kids and plus-size friendly. Made-to-order creations available
-        for customers worldwide.
-      </p>
-    </div>
-  </section>
+.hero-frame img {
+  display: block;
+  width: 100%;
+  height: 620px;
+  object-fit: contain;
+}
 
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <p class="eyebrow">LET'S CREATE</p>
-    <h2>Ready to make<br><em>something yours?</em></h2>
 
-    <div class="contact-links">
-      <a href="https://wa.me/917702096099" target="_blank" rel="noopener">WhatsApp</a>
-      <a href="https://www.instagram.com/ravuris.official/" target="_blank" rel="noopener">Instagram</a>
-    </div>
-  </section>
+/* BUTTONS */
 
-</main>
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
 
-<footer>
-  <span>Ravuri's Designer Studio</span>
-  <span>Custom Designer Wear</span>
-</footer>
+.button-dark {
+  background: var(--ink);
+  color: white;
+}
 
-<script src="script.js"></script>
-</body>
-</html>
+.button-dark:hover {
+  background: var(--burgundy);
+}
+
+.button-outline {
+  border: 1px solid var(--ink);
+}
+
+.button-outline:hover {
+  background: var(--ink);
+  color: white;
+}
+
+.button-light {
+  background: white;
+  color: var(--ink);
+}
+
+.button-light:hover {
+  background: var(--gold);
+  color: white;
+}
+
+
+/* INTRO */
+
+.intro {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 130px 4vw;
+  text-align: center;
+}
+
+.intro h2 {
+  margin-bottom: 30px;
+}
+
+.intro > p:last-child {
+  max-width: 650px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+
+/* GENERAL SECTION */
+
+.section {
+  padding: 100px 4vw;
+}
+
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.section-heading h2 {
+  margin: 0;
+}
+
+.section-heading > p {
+  max-width: 420px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+
+/* COLLECTION CARDS */
+
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.collection-card {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+}
+
+.collection-card-button {
+  width: 100%;
+  cursor: pointer;
+}
+
+.collection-image {
+  display: block;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 22px;
+  background: #eee7dc;
+  object-fit: cover;
+}
+
+.collection-card h3 {
+  margin: 0 0 10px;
+  font-size: 28px;
+}
+
+.collection-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.collection-card-button .collection-image {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.collection-card-button:hover .collection-image {
+  transform: scale(1.015);
+  filter: brightness(0.94);
+}
+
+.collection-link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--burgundy);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+/* LEHENGA POPUP */
+
+.collection-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: none;
+}
+
+.collection-modal.open {
+  display: block;
+}
+
+.collection-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 17, 15, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.collection-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(1100px, 92vw);
+  max-height: 90vh;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  padding: 45px;
+  background: var(--paper);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+  padding-right: 45px;
+  margin-bottom: 30px;
+}
+
+.modal-header h2 {
+  margin: 0 0 12px;
+  font-size: clamp(42px, 5vw, 62px);
+}
+
+.modal-header p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--burgundy);
+}
+
+.lehenga-popup-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+.popup-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 300px;
+  background: #eee7dc;
+  border: 1px solid var(--line);
+}
+
+.popup-image img {
+  display: block;
+  width: 100%;
+  height: 330px;
+  object-fit: contain;
+}
+
+
+/* CUSTOM BANNER */
+
+.custom-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  margin: 30px 4vw 100px;
+  padding: 80px;
+  background: var(--burgundy);
+  color: white;
+}
+
+.custom-banner .eyebrow {
+  color: #e8cfd3;
+}
+
+.custom-banner h2 {
+  margin-bottom: 20px;
+}
+
+.custom-banner h2 em {
+  color: #f1dce0;
+}
+
+.custom-banner p:last-child {
+  max-width: 520px;
+  margin: 0;
+  color: #eadcdf;
+  font-size: 14px;
+}
+
+
+/* PORTFOLIO */
+
+.portfolio-note {
+  padding: 50px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  text-align: center;
+}
+
+.portfolio-note p {
+  margin: 0;
+  color: var(--muted);
+}
+
+
+/* ABOUT */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  padding: 120px 4vw;
+  border-top: 1px solid var(--line);
+}
+
+.about h2 {
+  margin: 0;
+}
+
+.about > div:last-child {
+  max-width: 560px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+
+/* CONTACT */
+
+.contact {
+  padding: 120px 4vw;
+  background: var(--paper);
+  text-align: center;
+}
+
+.contact h2 {
+  margin-bottom: 45px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 35px;
+}
+
+.contact-links a {
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.contact-links a:hover {
+  color: var(--burgundy);
+  border-color: var(--burgundy);
+}
+
+
+/* FOOTER */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 30px 4vw;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+  .nav {
+    gap: 18px;
+  }
+
+  .nav a {
+    font-size: 10px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+    min-height: 600px;
+  }
+
+  .hero-frame img {
+    height: 520px;
+  }
+
+  .collection-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .collection-image {
+    height: 230px;
+  }
+
+  .collection-card h3 {
+    font-size: 23px;
+  }
+
+  .lehenga-popup-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .popup-image {
+    min-height: 360px;
+  }
+
+  .popup-image img {
+    height: 390px;
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 20px 5vw;
+  }
+
+  .brand {
+    width: 120px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px 5vw;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    font-size: 11px;
+  }
+
+  .hero {
+    display: block;
+    min-height: auto;
+    padding: 60px 5vw;
+  }
+
+  .hero-copy {
+    margin-bottom: 50px;
+  }
+
+  .hero-frame img {
+    height: auto;
+  }
+
+  .intro {
+    padding: 90px 5vw;
+  }
+
+  .section {
+    padding: 75px 5vw;
+  }
+
+  .section-heading {
+    display: block;
+    margin-bottom: 45px;
+  }
+
+  .section-heading > p {
+    margin-top: 20px;
+  }
+
+  .collection-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 25px 14px;
+  }
+
+  .collection-image {
+    height: 300px;
+  }
+
+  .collection-card h3 {
+    font-size: 25px;
+  }
+
+  .collection-modal-content {
+    width: 94vw;
+    max-height: 92vh;
+    padding: 35px 18px 25px;
+  }
+
+  .modal-header {
+    margin-bottom: 22px;
+  }
+
+  .modal-header h2 {
+    font-size: 42px;
+  }
+
+  .lehenga-popup-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .popup-image {
+    min-height: 240px;
+  }
+
+  .popup-image img {
+    height: 280px;
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 14px;
+    font-size: 32px;
+  }
+
+  .custom-banner {
+    display: block;
+    margin: 20px 5vw 70px;
+    padding: 55px 30px;
+  }
+
+  .custom-banner .button {
+    margin-top: 30px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    padding: 80px 5vw;
+  }
+
+  .contact {
+    padding: 90px 5vw;
+  }
+
+  footer {
+    flex-direction: column;
+    padding: 25px 5vw;
+  }
+}
+
+
+/* SMALL PHONES */
+
+@media (max-width: 500px) {
+  h1 {
+    font-size: 48px;
+  }
+
+  h2 {
+    font-size: 42px;
+  }
+
+  .collection-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .collection-image {
+    height: 230px;
+  }
+
+  .collection-card h3 {
+    font-size: 22px;
+  }
+
+  .collection-card p {
+    font-size: 13px;
+  }
+
+  .collection-modal-content {
+    width: 96vw;
+    padding: 32px 12px 20px;
+  }
+
+  .lehenga-popup-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .popup-image {
+    min-height: 220px;
+  }
+
+  .popup-image img {
+    height: 240px;
+  }
+}
