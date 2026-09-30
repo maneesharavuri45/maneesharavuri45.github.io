@@ -26,7 +26,7 @@ body {
   line-height: 1.7;
 }
 
-body:has(.collection-modal:target) {
+body.modal-open {
   overflow: hidden;
 }
 
@@ -267,40 +267,47 @@ em {
   text-transform: uppercase;
 }
 
+
+/* =========================================
+   LEHENGA POPUP
+   ========================================= */
+
 .collection-modal {
   position: fixed;
   inset: 0;
   z-index: 9999;
   display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
 }
 
-.collection-modal:target {
-  display: block;
+.collection-modal:target,
+.collection-modal.is-open {
+  display: flex;
 }
 
 .collection-modal-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(20, 17, 15, 0.82);
-  backdrop-filter: blur(6px);
+  background: rgba(18, 15, 13, 0.84);
+  backdrop-filter: blur(8px);
 }
 
 .collection-modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: min(1100px, 92vw);
-  max-height: 90vh;
-  transform: translate(-50%, -50%);
+  position: relative;
+  z-index: 2;
+  width: min(1120px, 94vw);
+  max-height: 92vh;
   overflow-y: auto;
-  padding: 45px;
+  padding: 48px 52px 55px;
   background: var(--paper);
-  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.35);
 }
 
 .modal-header {
-  padding-right: 45px;
-  margin-bottom: 35px;
+  padding-right: 50px;
+  margin-bottom: 38px;
 }
 
 .modal-header h2 {
@@ -315,12 +322,12 @@ em {
 
 .modal-close {
   position: absolute;
-  top: 14px;
-  right: 20px;
-  z-index: 2;
+  top: 18px;
+  right: 25px;
+  z-index: 5;
   color: var(--ink);
   font-family: Arial, sans-serif;
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 300;
   line-height: 1;
 }
@@ -329,13 +336,16 @@ em {
   color: var(--wine);
 }
 
-/* LEHENGA CATALOGUE */
+
+/* =========================================
+   LEHENGA CATALOGUE
+   ========================================= */
 
 .lehenga-popup-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 28px;
-  row-gap: 48px;
+  column-gap: 30px;
+  row-gap: 52px;
 }
 
 .lehenga-item {
@@ -345,27 +355,29 @@ em {
 
 .popup-image {
   width: 100%;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: #eee7dc;
-  border: 1px solid var(--line);
+  background: #ffffff;
+  border: 1px solid rgba(23, 21, 19, 0.1);
 }
 
 .popup-image img {
   display: block;
   width: 100%;
-  height: 520px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
   transition: transform 0.5s ease;
 }
 
 .lehenga-item:hover .popup-image img {
-  transform: scale(1.02);
+  transform: scale(1.025);
 }
 
 .lehenga-item h3 {
   margin: 17px 0 6px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 28px;
+  font-size: 29px;
   line-height: 1.1;
   font-weight: 500;
   color: var(--ink);
@@ -378,6 +390,11 @@ em {
   font-size: 12px;
   line-height: 1.65;
 }
+
+
+/* =========================================
+   OTHER SECTIONS
+   ========================================= */
 
 .custom-banner {
   padding: 100px 5vw;
@@ -454,7 +471,13 @@ footer {
   color: var(--muted);
 }
 
+
+/* =========================================
+   TABLET
+   ========================================= */
+
 @media (max-width: 900px) {
+
   .collection-grid {
     gap: 14px;
   }
@@ -465,16 +488,19 @@ footer {
 
   .lehenga-popup-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 20px;
-    row-gap: 40px;
+    column-gap: 22px;
+    row-gap: 42px;
   }
 
-  .popup-image img {
-    height: 400px;
-  }
 }
 
+
+/* =========================================
+   MOBILE NAV + TABLET
+   ========================================= */
+
 @media (max-width: 800px) {
+
   .nav {
     display: none;
     position: absolute;
@@ -519,20 +545,20 @@ footer {
     align-items: start;
   }
 
+  .collection-modal {
+    padding: 15px;
+  }
+
   .collection-modal-content {
-    width: 94vw;
-    max-height: 92vh;
-    padding: 35px 22px 25px;
+    width: 96vw;
+    max-height: 94vh;
+    padding: 38px 24px 35px;
   }
 
   .lehenga-popup-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 16px;
-    row-gap: 34px;
-  }
-
-  .popup-image img {
-    height: 340px;
+    row-gap: 35px;
   }
 
   .lehenga-item h3 {
@@ -545,37 +571,68 @@ footer {
   }
 }
 
+
+/* =========================================
+   SMALL MOBILE
+   ========================================= */
+
 @media (max-width: 500px) {
+
+  .site-header {
+    padding: 12px 5vw;
+  }
+
+  .brand {
+    width: 125px;
+  }
+
+  .brand img {
+    width: 125px;
+  }
+
   .collection-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 22px 12px;
   }
 
   .collection-image {
-    height: 210px;
+    height: 190px;
   }
 
   .collection-card h3 {
-    font-size: 25px;
+    font-size: 23px;
   }
 
   .collection-card p {
     font-size: 12px;
   }
 
+  .collection-modal {
+    padding: 8px;
+  }
+
   .collection-modal-content {
-    width: 96vw;
-    padding: 32px 12px 18px;
+    width: 98vw;
+    max-height: 96vh;
+    padding: 35px 14px 28px;
+  }
+
+  .modal-header {
+    margin-bottom: 25px;
+  }
+
+  .modal-header h2 {
+    font-size: 42px;
   }
 
   .lehenga-popup-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 10px;
-    row-gap: 30px;
+    row-gap: 28px;
   }
 
-  .popup-image img {
-    height: 250px;
+  .popup-image {
+    aspect-ratio: 4 / 5;
   }
 
   .lehenga-item h3 {
@@ -584,8 +641,8 @@ footer {
   }
 
   .lehenga-item p {
-    font-size: 11px;
-    line-height: 1.55;
+    font-size: 10.5px;
+    line-height: 1.5;
   }
 
   .modal-close {
